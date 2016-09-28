@@ -2,11 +2,12 @@
 
 namespace gitrevsubst
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            if (args.Length != 3) {
+            if (args.Length != 3)
+            {
                 Console.WriteLine(
                     "Usage: GITREVSUBST.EXE <GitDirectory> <InputFile> <OutputFile>");
                 Environment.Exit(1);
@@ -17,16 +18,18 @@ namespace gitrevsubst
             string outputFile = args[2];
 
             var git = new Git(gitDir);
-            string rev = git.GetShortRevId();
+            var rev = git.GetShortRevId();
 
-            if (rev == null) {
+            if (rev == null)
+            {
                 Console.WriteLine("Error retrieving git revision!");
                 Environment.Exit(2);
             }
 
             DateTime? date = git.GetDate(rev);
 
-            if (date == null) {
+            if (date == null)
+            {
                 Console.WriteLine("Error retrieving git commit date!");
                 Environment.Exit(2);
             }
@@ -36,7 +39,8 @@ namespace gitrevsubst
             contents = contents.Replace("$GITREV$", rev);
 
             bool? dirtyStatus = git.GetDirtyStatus();
-            if (dirtyStatus == null) {
+            if (dirtyStatus == null)
+            {
                 Console.WriteLine("Error retrieving git dirty status!");
                 Environment.Exit(2);
             }
@@ -45,8 +49,13 @@ namespace gitrevsubst
             contents = contents.Replace("$GITDIRTY$", dirtyString);
 
             contents = contents.Replace("$GITDATE$",
-                ((DateTime) date).ToString("yyyyMMdd"));
+                ((DateTime)date).ToString("yyyyMMdd"));
 
+            var version = git.ParseTag();
+            contents = contents.Replace("$MAJOR$", version.major.ToString());
+            contents = contents.Replace("$MINOR$", version.minor.ToString());
+            contents = contents.Replace("$REVISION$", version.revision.ToString());
+            contents = contents.Replace("$BUILD$", version.build.ToString());
             System.IO.File.WriteAllText(outputFile, contents);
         }
     }
