@@ -135,6 +135,13 @@ namespace gitrevsubst
                         {
                             dateStr = l.Substring(1, l.Length - 2);
                         }
+                        else
+                        {
+                            if (!l.StartsWith("commit"))
+                            {
+                                dateStr = l.Substring(0, l.Length);
+                            }
+                        }
                     }
                     else
                     {
@@ -148,25 +155,36 @@ namespace gitrevsubst
 
         private string GetGitOutput(string arguments)
         {
-            Process p = new Process();
-            p.StartInfo.CreateNoWindow = true;
-            p.StartInfo.UseShellExecute = false;
-            p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.FileName = "git.exe";
-            p.StartInfo.Arguments = arguments;
-            p.Start();
-            string output = p.StandardOutput.ReadToEnd();
-            p.WaitForExit();
-
-            if (p.ExitCode != 0)
+            try
             {
-                Debug.WriteLine("Process returned error code " + p.ExitCode);
-                return null;
+                Process p = new Process();
+                p.StartInfo.CreateNoWindow = true;
+                p.StartInfo.UseShellExecute = false;
+                p.StartInfo.RedirectStandardOutput = true;
+                p.StartInfo.FileName = "git";
+                p.StartInfo.Arguments = arguments;
+                p.Start();
+                string output = p.StandardOutput.ReadToEnd();
+                p.WaitForExit();
+
+                if (p.ExitCode != 0)
+                {
+                    Debug.WriteLine("Process returned error code " + p.ExitCode);
+                    return null;
+                }
+
+                output = output.Trim(); // remove line ending
+
+                Console.WriteLine("git command: " + arguments);
+                Console.WriteLine("returned: " + output);
+
+                return output;
             }
-
-            output = output.Trim(); // remove line ending
-
-            return output;
+            catch (Exception e)
+            {
+                Console.WriteLine("failed to run git " + e.Message);
+                return "";
+            }
         }
     }
 }

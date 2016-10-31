@@ -20,6 +20,8 @@ namespace gitrevsubst
             var git = new Git(gitDir);
             var rev = git.GetShortRevId();
 
+            Console.WriteLine("git.GetShortRevId() " + rev);
+
             if (rev == null)
             {
                 Console.WriteLine("Error retrieving git revision!");
@@ -27,6 +29,8 @@ namespace gitrevsubst
             }
 
             DateTime? date = git.GetDate(rev);
+
+            Console.WriteLine("git.GetDate(rev) " + date);
 
             if (date == null)
             {
