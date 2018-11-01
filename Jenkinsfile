@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('checkout') {
+    stage('build') {
       steps {
-        checkout scm
+        bat '"\\"${tool \'MSBuild\'}\\" gitrevsubst.sln /p:Configuration=Release /p:Platform=\\"Any CPU\\""'
       }
     }
   }
