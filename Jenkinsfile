@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        bat '"\\"${tool \'MSBuild\'}\\" gitrevsubst.sln /p:Configuration=Release /p:Platform=\\"Any CPU\\""'
+        bat 'MSBuild gitrevsubst.sln /p:Configuration=Release /p:Platform=\\"Any CPU\\"'
       }
     }
   }
