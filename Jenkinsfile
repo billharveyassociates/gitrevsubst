@@ -6,9 +6,9 @@ pipeline {
 
   }
   stages {
-    stage('echo') {
+    stage('checkout') {
       steps {
-        bat 'echo "hello"'
+        checkout scm
       }
     }
   }
