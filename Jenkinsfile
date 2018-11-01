@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    docker {
-      image 'buildtools2017'
-    }
-
-  }
+  agent any
   stages {
     stage('checkout') {
       steps {
