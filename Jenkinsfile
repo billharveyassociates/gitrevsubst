@@ -8,7 +8,7 @@ pipeline {
     }
     stage('archive') {
       steps {
-        archiveArtifacts 'gitrevsubst/bin/release/**'
+        archiveArtifacts 'gitrevsubst/bin/Release/**'
       }
     }
   }
