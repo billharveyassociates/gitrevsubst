@@ -4,7 +4,7 @@ pipeline {
     stage('build') {
       steps {
         bat 'echo %PATH%'
-        bat 'echo env.MSBUILDEXE'
+        bat 'echo %MSBUILDEXE%'
       }
     }
   }
