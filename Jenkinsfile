@@ -3,8 +3,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        bat 'echo %PATH%'
-        bat 'echo %MSBUILDEXE%'
+        bat '%MSBUILDEXE% gitrevsubst.sln /p:Configuration=Release /p:Platform=\\"Any CPU\\"'
       }
     }
   }
