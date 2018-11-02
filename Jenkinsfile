@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        bat '${env.MSBUILDEXE} gitrevsubst.sln /p:Configuration=Release /p:Platform=\\"Any CPU\\"'
+        bat "${env.MSBUILDEXE} gitrevsubst.sln /p:Configuration=Release /p:Platform=\\"Any CPU\\""
       }
     }
   }
