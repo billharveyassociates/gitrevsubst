@@ -9,7 +9,7 @@ namespace gitrevsubst
             if (args.Length != 3)
             {
                 Console.WriteLine(
-                    "Usage: GITREVSUBST.EXE <GitDirectory> <InputFile> <OutputFile>");
+                    "Usage: gitrevsubst <GitDirectory> <InputFile> <OutputFile>");
                 Environment.Exit(1);
             }
 
