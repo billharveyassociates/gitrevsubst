@@ -3,7 +3,8 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        bat 'abc'
+        bat 'echo %PATH%'
+        bat 'echo env.MSBUILDEXE'
       }
     }
   }
