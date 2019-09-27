@@ -65,7 +65,7 @@ namespace gitrevsubst
         public string GetShortRevId()
         {
             string rev = this.GetGitOutput(string.Format(
-                "--git-dir {0} rev-parse --short HEAD",
+                "--git-dir {0} rev-parse --short=7 HEAD",
                 this.gitDirectory));
             if (rev.Length != 7)
             {
