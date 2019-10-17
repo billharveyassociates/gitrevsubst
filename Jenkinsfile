@@ -5,7 +5,8 @@ pipeline {
       steps {
           script {
 			bat '%MSBUILD15% gitrevsubst.sln /p:Configuration=Release'
-			def incremental = gitChangelog from: [type: 'COMMIT', value: "${GIT_PREVIOUS_COMMIT}"], returnType: 'STRING', template: readFile "${env.WORKSPACE}/changelog/incremental_template.txt", to: [type: 'COMMIT', value: "${GIT_COMMIT}"]
+			def template = readFile "${env.WORKSPACE}/changelog/incremental_template.txt"
+			def incremental = gitChangelog from: [type: 'COMMIT', value: "${GIT_PREVIOUS_COMMIT}"], returnType: 'STRING', template: template, to: [type: 'COMMIT', value: "${GIT_COMMIT}"]
 			currentBuild.description = incremental
 		  }
       }
