@@ -1,0 +1,30 @@
+<h1> SurveyViewer Changelog </h1>
+
+<p>
+Changelog of Git Changelog.
+</p>
+
+{{#tags}}
+<h2> {{name}} </h2>
+ {{#issues}}
+  {{#hasIssue}}
+<h2> {{name}} {{issue}} {{title}} </h2>
+  {{/hasIssue}}
+  {{^hasIssue}}
+<h2> {{name}} </h2>
+  {{/hasIssue}}
+
+
+   {{#commits}}
+<h3>{{{messageTitle}}}</h3>
+
+{{#messageBodyItems}}
+ <li> {{.}}</li> 
+{{/messageBodyItems}}
+</p>
+
+
+  {{/commits}}
+
+ {{/issues}}
+{{/tags}}

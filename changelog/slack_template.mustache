@@ -1,0 +1,23 @@
+{{#tags}}
+*{{name}}*
+ {{#issues}}
+  {{#hasIssue}}
+  •{{name}} {{issue}} {{title}} {{#hasIssueType}} *{{issueType}}* {{/hasIssueType}} {{#hasLabels}} {{#labels}} *{{.}}* {{/labels}} {{/hasLabels}}
+  {{/hasIssue}}
+  {{^hasIssue}}
+  •{{name}}
+  {{/hasIssue}}
+
+  {{#commits}}
+  •*{{{messageTitle}}}*
+
+{{#messageBodyItems}}
+   {{.}} 
+{{/messageBodyItems}}
+
+(https://github.com/{{ownerName}}/{{repoName}}/commit/{{hash}})
+
+  {{/commits}}
+
+ {{/issues}}
+{{/tags}}
