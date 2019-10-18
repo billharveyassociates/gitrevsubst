@@ -5,11 +5,11 @@
   * {{name}} {{issue}} {{title}} {{#hasIssueType}} *{{issueType}}* {{/hasIssueType}} {{#hasLabels}} {{#labels}} *{{.}}* {{/labels}} {{/hasLabels}}
   {{/hasIssue}}
   {{^hasIssue}}
-  * {{name}}
+  * *{{name}}*
   {{/hasIssue}}
 
   {{#commits}}
-  * *{{{messageTitle}}}*
+  * {{{messageTitle}}}
 
 {{#messageBodyItems}}
    {{.}} 
