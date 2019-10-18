@@ -2,20 +2,18 @@
 *{{name}}*
  {{#issues}}
   {{#hasIssue}}
-  •{{name}} {{issue}} {{title}} {{#hasIssueType}} *{{issueType}}* {{/hasIssueType}} {{#hasLabels}} {{#labels}} *{{.}}* {{/labels}} {{/hasLabels}}
+  * {{name}} {{issue}} {{title}} {{#hasIssueType}} *{{issueType}}* {{/hasIssueType}} {{#hasLabels}} {{#labels}} *{{.}}* {{/labels}} {{/hasLabels}}
   {{/hasIssue}}
   {{^hasIssue}}
-  •{{name}}
+  * {{name}}
   {{/hasIssue}}
 
   {{#commits}}
-  •*{{{messageTitle}}}*
+  * *{{{messageTitle}}}*
 
 {{#messageBodyItems}}
    {{.}} 
 {{/messageBodyItems}}
-
-(https://github.com/{{ownerName}}/{{repoName}}/commit/{{hash}})
 
   {{/commits}}
 
