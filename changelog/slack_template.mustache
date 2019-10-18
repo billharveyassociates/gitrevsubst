@@ -1,6 +1,4 @@
-{{#tags}}
-*{{name}}*
- {{#issues}}
+{{#issues}}
   {{#hasIssue}}
   * {{name}} {{issue}} {{title}} {{#hasIssueType}} *{{issueType}}* {{/hasIssueType}} {{#hasLabels}} {{#labels}} *{{.}}* {{/labels}} {{/hasLabels}}
   {{/hasIssue}}
@@ -17,5 +15,4 @@
 
   {{/commits}}
 
- {{/issues}}
-{{/tags}}
+{{/issues}}
