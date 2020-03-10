@@ -32,6 +32,7 @@ namespace gitrevsubst
             try
             {
                 Directory.SetCurrentDirectory(Directory.GetParent(gitDirectory).FullName);
+
                 string output = this.GetGitOutput(string.Format(
                     "describe --always --dirty --tags",
                     this.gitDirectory));
@@ -161,10 +162,12 @@ namespace gitrevsubst
                 p.StartInfo.CreateNoWindow = true;
                 p.StartInfo.UseShellExecute = false;
                 p.StartInfo.RedirectStandardOutput = true;
+                p.StartInfo.RedirectStandardError = true;
                 p.StartInfo.FileName = "git";
                 p.StartInfo.Arguments = arguments;
                 p.Start();
                 string output = p.StandardOutput.ReadToEnd();
+                var err = p.StandardError.ReadToEnd();
                 p.WaitForExit();
 
                 if (p.ExitCode != 0)
